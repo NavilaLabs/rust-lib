@@ -2,21 +2,8 @@
   "name": "rust-lib",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspaces/rust-lib",
-  "remoteUser": "navila",
-  "initializeCommand": "chmod +x ./.devcontainer/initialize.sh && ./.devcontainer/initialize.sh",
-  "postStartCommand": "chmod +x ./.devcontainer/post_start.sh && ./.devcontainer/post_start.sh",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "rust-lang.rust-analyzer",
-        "vadimcn.vscode-lldb",
-        "tamasfe.even-better-toml",
-        "fill-labs.dependi"
-      ]
-    }
-  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/navila/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
   ]
 }

@@ -1,2 +1,2 @@
 # rust-lib
-A basic template to create new rust libraries.
+A basic template to create new rust projects.

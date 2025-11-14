@@ -12,23 +12,23 @@ RUN curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/
     | gunzip -c - > /usr/local/bin/rust-analyzer \
     && chmod +x /usr/local/bin/rust-analyzer
 
-# Create user 'navila' with home directory and passwordless sudo
-RUN useradd -m -s /bin/bash navila \
- && echo 'navila ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
 # Switch to non-root user
-USER navila
-WORKDIR /home/navila
+USER vscode
+WORKDIR /home/vscode
 
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Add Cargo to PATH
-ENV PATH="/home/navila/.cargo/bin:${PATH}"
+ENV PATH="/home/vscode/.cargo/bin:${PATH}"
 
 # Finish Rust setup
 RUN rustup toolchain install stable \
  && rustup target add wasm32-unknown-unknown
 
-RUN cargo install cargo-tarpaulin
-RUN cargo install --locked --git https://github.com/j178/prek
+RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
+RUN cargo binstall cargo-tarpaulin
+RUN cargo binstall prek --git https://github.com/j178/prek
+
+RUN git remote add template git@github.com:NavilaLabs/rust-base.git 2>/dev/null || true

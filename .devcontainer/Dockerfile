@@ -31,4 +31,4 @@ RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ca
 RUN cargo binstall cargo-tarpaulin
 RUN cargo binstall prek --git https://github.com/j178/prek
 
-RUN git remote add template git@github.com:NavilaLabs/rust-base.git 2>/dev/null || true
+RUN git remote add template git@github.com:NavilaLabs/rust-lib.git 2>/dev/null || true
